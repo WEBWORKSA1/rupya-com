@@ -1,0 +1,66 @@
+<!doctype html><html lang="en-IN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Free 60-Second Money Check-up – Get Your Rupya Score | Rupya.com</title>
+<meta name="description" content="Answer six quick questions for an instant money health score out of 100, your three highest-impact next steps and a free personalised action plan.">
+<meta name="google-adsense-account" content="ca-pub-6620975821265271"><link rel="icon" href="favicon.svg"><link rel="stylesheet" href="assets/site.css">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6620975821265271" crossorigin="anonymous"></script>
+<script defer src="assets/site.js"></script></head><body>
+<a class="topbar" href="https://web.works/contact">Contact, if you are interested in this website/domain name/Sponsorship/Advertisement/Partnership</a>
+<header id="hdr"></header><main class="wrap narrow">
+<p class="crumb"><a href="index.html">Home</a> › Money check-up</p>
+<span class="eyebrow">Free · 60 seconds · no sign-up to see your score</span>
+<h1>How healthy is your money?</h1><p class="lead">Six questions. An instant score out of 100. The three moves that would improve it most.</p>
+<div class="card" id="wz">
+<div class="steps" id="bar"><i class="on"></i><i></i><i></i><i></i><i></i><i></i></div>
+<div data-step><h3>1. What is your main money goal right now?</h3><div class="opts" data-key="goal"><button class="opt" type="button">Start investing</button><button class="opt" type="button">Pay off loans faster</button><button class="opt" type="button">Save tax</button><button class="opt" type="button">Buy a home</button><button class="opt" type="button">Retire comfortably</button><button class="opt" type="button">Send or receive money abroad</button></div></div>
+<div data-step hidden><h3>2. What is your monthly take-home income?</h3><label for="q-inc">Amount in ₹</label><input id="q-inc" type="number" inputmode="numeric" min="1" placeholder="e.g. 80000"><p><button class="btn" type="button" data-next="inc" style="margin-top:14px">Next</button></p></div>
+<div data-step hidden><h3>3. How much of it do you save or invest each month?</h3><label for="q-sav">Amount in ₹</label><input id="q-sav" type="number" inputmode="numeric" min="0" placeholder="e.g. 15000"><p><button class="btn" type="button" data-next="sav" style="margin-top:14px">Next</button></p></div>
+<div data-step hidden><h3>4. How much do you pay in EMIs and card dues each month?</h3><label for="q-emi">Amount in ₹ (enter 0 if none)</label><input id="q-emi" type="number" inputmode="numeric" min="0" placeholder="e.g. 20000"><p><button class="btn" type="button" data-next="emi" style="margin-top:14px">Next</button></p></div>
+<div data-step hidden><h3>5. If your income stopped today, how long would your savings cover expenses?</h3><div class="opts" data-key="ef"><button class="opt" type="button" data-v="0">Less than a month</button><button class="opt" type="button" data-v="2">1 to 3 months</button><button class="opt" type="button" data-v="4">3 to 6 months</button><button class="opt" type="button" data-v="6">More than 6 months</button></div></div>
+<div data-step hidden><h3>6. Which cover do you have?</h3><div class="opts" data-key="ins"><button class="opt" type="button" data-v="both">Health and term life</button><button class="opt" type="button" data-v="health">Health only</button><button class="opt" type="button" data-v="term">Term life only</button><button class="opt" type="button" data-v="none">Neither</button></div></div>
+<div id="res" hidden aria-live="polite">
+<p class="eyebrow">Your Rupya score</p><p><span class="score" id="sc"></span> <span class="meta">out of 100 · <b id="band"></b></span></p>
+<div id="bd"></div><h3 style="margin-top:18px">Your three next steps</h3><ol id="tips"></ol>
+<div id="rec" class="tools"></div>
+<hr style="border:0;border-top:1px solid var(--line);margin:22px 0">
+<h3>Get your personalised action plan by email, free</h3><p class="note">A one-page plan built from your answers: target numbers, the order to do things in and the tools to use.</p>
+<form data-form="Lead: money check-up"><input type="hidden" name="score"><input type="hidden" name="answers">
+<div class="row"><div class="f"><label for="l-n">Name</label><input id="l-n" name="name" required autocomplete="name"></div><div class="f"><label for="l-e">Email</label><input id="l-e" name="email" type="email" required autocomplete="email"></div></div>
+<div class="row"><div class="f"><label for="l-p">Phone (optional)</label><input id="l-p" name="phone" type="tel" autocomplete="tel"></div><div class="f"><label for="l-c">City</label><input id="l-c" name="city" autocomplete="address-level2"></div></div>
+<div class="f"><label class="consent"><input type="checkbox" name="consent" value="yes" required><span>I agree to receive my plan and related money tips from Rupya.com by email, and to be contacted about relevant services. I can unsubscribe at any time. See the <a href="privacy.html">privacy policy</a>.</span></label></div>
+<button class="btn gold">Send me my free plan</button></form>
+<p style="margin-top:14px"><button class="link" type="button" id="again">Start again</button></p></div>
+</div>
+<section class="prose"><h2>How the score works</h2>
+<p>The score adds four parts. <b>Savings rate</b> (35 points): the share of income you save or invest, with full marks at 30%. <b>Emergency cover</b> (25 points): months of expenses you could fund without income. <b>Debt load</b> (20 points): EMIs as a share of income, with full marks for none and zero above 50%. <b>Protection</b> (20 points): health and term life cover. It is a quick screen based on common planning rules of thumb, not a full financial plan or advice.</p>
+<p>Your answers stay in your browser unless you choose to send them with the form.</p></section>
+<script>
+(function(){
+  var a={},steps=[].slice.call(document.querySelectorAll('[data-step]')),bar=document.querySelectorAll('#bar i'),cur=0;
+  function go(n){cur=n;steps.forEach(function(s,i){s.hidden=i!==n});bar.forEach(function(b,i){b.className=i<=n?'on':''});if(n>=steps.length)show();else{var f=steps[n].querySelector('input');if(f)f.focus()}}
+  document.querySelectorAll('.opts').forEach(function(o){o.addEventListener('click',function(e){var b=e.target.closest('.opt');if(!b)return;a[o.dataset.key]=b.dataset.v||b.textContent;go(cur+1)})});
+  document.querySelectorAll('[data-next]').forEach(function(b){var k=b.dataset.next,inp=document.getElementById('q-'+k);function nx(){var v=parseFloat(inp.value);if(!(v>=0)||(k==='inc'&&v<=0)){inp.focus();return}a[k]=v;go(cur+1)}b.onclick=nx;inp.onkeydown=function(e){if(e.key==='Enter')nx()}});
+  function show(){
+    var rate=Math.min(a.sav/a.inc,1),dr=a.emi/a.inc,ef=+a.ef;
+    var p1=Math.round(Math.min(rate/.3,1)*35),p2=ef>=6?25:ef>=4?18:ef>=2?10:0,p3=dr<=0?20:dr<=.3?15:dr<=.4?8:dr<=.5?3:0,p4=a.ins==='both'?20:a.ins==='none'?0:10,s=p1+p2+p3+p4;
+    document.getElementById('sc').textContent=s;
+    document.getElementById('band').textContent=s>=80?'Strong':s>=60?'On track':s>=40?'Needs attention':'Start here';
+    function row(l,v,m){return '<div class="out"><span>'+l+'</span><b>'+v+' / '+m+'</b></div>'}
+    document.getElementById('bd').innerHTML=row('Savings rate ('+Math.round(rate*100)+'% of income)',p1,35)+row('Emergency cover',p2,25)+row('Debt load ('+Math.round(dr*100)+'% of income)',p3,20)+row('Protection',p4,20);
+    var t=[];
+    if(p2<18)t.push('Build an emergency fund of at least three to six months of expenses before adding risk. <a href="guides/emergency-fund.html">How to build one</a>.');
+    if(p4<20)t.push(a.ins==='health'?'Add term life cover if anyone depends on your income.':a.ins==='term'?'Add health insurance so a hospital bill does not hit your savings.':'Get health insurance first, then term life cover if anyone depends on your income.');
+    if(p3<15)t.push('Your EMIs take '+Math.round(dr*100)+'% of income. Clear the costliest debt first, starting with credit cards. <a href="guides/home-loan-prepayment.html">Prepayment guide</a>.');
+    if(p1<35)t.push('Raise your savings rate from '+Math.round(rate*100)+'% towards 30%. Automate a transfer on salary day and step it up with every raise.');
+    t.push('Put long-term savings to work with a low-cost monthly SIP. <a href="guides/sip-for-beginners.html">SIP for beginners</a>.');
+    t.push('Check you are in the cheaper tax regime. <a href="calculators/income-tax.html">Compare regimes</a>.');
+    document.getElementById('tips').innerHTML=t.slice(0,3).map(function(x){return '<li>'+x+'</li>'}).join('');
+    var R={'Start investing':['sip','goal-sip'],'Pay off loans faster':['emi','income-tax'],'Save tax':['income-tax','hra'],'Buy a home':['emi','goal-sip'],'Retire comfortably':['retirement','swp']},N={sip:'SIP',"goal-sip":'Goal SIP',emi:'EMI',"income-tax":'Income tax',hra:'HRA',retirement:'Retirement',swp:'SWP'};
+    var r=R[a.goal],h=r?r.map(function(k){return '<a class="btn sm ghost" href="calculators/'+k+'.html">'+N[k]+' calculator</a>'}).join(''):'<a class="btn sm ghost" href="currency.html">Rupee converter</a><a class="btn sm ghost" href="guides/sending-money-to-india.html">Remittance guide</a>';
+    document.getElementById('rec').innerHTML=h;
+    var f=document.querySelector('#res form');if(f){f.elements.score.value=s;f.elements.answers.value=JSON.stringify(a)}
+    document.getElementById('res').hidden=false;
+  }
+  document.getElementById('again').onclick=function(){a={};document.getElementById('res').hidden=true;document.querySelectorAll('#wz input[type=number]').forEach(function(i){i.value=''});go(0)};
+})();
+</script>
+</main><footer id="ftr"></footer></body></html>
