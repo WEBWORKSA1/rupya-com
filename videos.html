@@ -1,0 +1,29 @@
+<!doctype html><html lang="en-IN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Money Videos – Personal Finance Video Learning Hub | Rupya.com</title>
+<meta name="description" content="Twelve personal finance topics for India with video explainers: SIPs, tax regimes, home loans, index funds, small savings, UPI safety and more.">
+<meta name="google-adsense-account" content="ca-pub-6620975821265271"><link rel="icon" href="favicon.svg"><link rel="stylesheet" href="assets/site.css">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6620975821265271" crossorigin="anonymous"></script>
+<script defer src="assets/site.js"></script></head><body>
+<a class="topbar" href="https://web.works/contact">Contact, if you are interested in this website/domain name/Sponsorship/Advertisement/Partnership</a>
+<header id="hdr"></header><main class="wrap">
+<p class="crumb"><a href="index.html">Home</a> › Videos</p>
+<h1>Video learning hub</h1><p class="lead">Some ideas are easier to watch than to read. Pick a topic to find video explainers on YouTube, then put your own numbers into the matching calculator.</p>
+<div class="grid" id="vg" style="grid-template-columns:repeat(auto-fill,minmax(300px,1fr))"><p class="note">Loading topics…</p></div>
+<section class="prose"><h2>How to judge a finance video</h2>
+<p>Anyone can publish money advice. Before acting on a video, check four things. <b>Who is speaking</b>: regulators such as SEBI and the RBI, and registered advisers, are accountable for what they say. <b>What they earn</b>: a presenter paid to promote a product should say so. <b>Whether returns are promised</b>: guaranteed high returns do not exist, and urgency is a warning sign. <b>Whether the rules are current</b>: tax slabs and scheme rates change, so compare what you hear with our dated <a href="guides/index.html">guides</a>.</p>
+<h2>For creators</h2>
+<p>Make clear, accurate explainers about money in India? We feature good work here and commission new videos. See <a href="support.html#hire">work with us</a>.</p></section>
+<script>
+fetch('data/videos.json').then(function(r){return r.json()}).then(function(v){
+  var g=document.getElementById('vg');g.innerHTML='';
+  v.forEach(function(x){
+    var c=document.createElement('div');c.className='card';
+    var u='https://www.youtube.com/results?search_query='+encodeURIComponent(x.q);
+    c.innerHTML=(x.id?'<div class="yt" role="button" tabindex="0" aria-label="Play video" style="background-image:url(https://i.ytimg.com/vi/'+x.id+'/hqdefault.jpg)"></div>':'')+'<h3></h3><p></p><a class="btn sm ghost" target="_blank" rel="noopener" href="'+u+'">'+(x.id?'More videos on this topic':'Watch explainers on YouTube')+' ↗</a>';
+    c.querySelector('h3').textContent=x.t;c.querySelector('p').textContent=x.d;
+    var y=c.querySelector('.yt');if(y){var play=function(){y.innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/'+x.id+'?autoplay=1" title="Video player" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>'};y.onclick=play;y.onkeydown=function(e){if(e.key==='Enter')play()}}
+    g.appendChild(c);
+  });
+}).catch(function(){document.getElementById('vg').innerHTML='<p class="note">Topics could not be loaded. Please refresh.</p>'});
+</script>
+</main><footer id="ftr"></footer></body></html>
