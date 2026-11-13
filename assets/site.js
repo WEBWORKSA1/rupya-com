@@ -204,6 +204,7 @@
   };
 
   /* ---------- engraving (guilloche) ---------- */
+  const glCache = {};
   function guilloche(svg, o = {}) {
     const ns = 'http://www.w3.org/2000/svg';
     svg.setAttribute('viewBox', '0 0 500 500');
@@ -212,27 +213,29 @@
       [222, 9, 36, 6, '#F2B705', .5], [196, 13, 24, 10, '#1FA391', .55], [160, 11, 30, 9, '#A898EC', .5],
       [128, 9, 18, 8, '#F2B705', .45], [100, 22, 12, 8, '#1FA391', .35]
     ];
-    let k = 0;
-    const frag = D.createDocumentFragment();
-    for (const [r0, a, lobes, m, col, op] of bands) {
-      const N = Math.max(400, lobes * 22);
-      for (let j = 0; j < m; j++) {
-        const ph = 2 * Math.PI * j / (lobes * m);
-        let d = '';
-        for (let i = 0; i <= N; i++) {
-          const t = 2 * Math.PI * i / N, r = r0 + a * Math.sin(lobes * (t + ph)) + a * .18 * Math.sin(3 * lobes * (t - ph));
-          d += (i ? 'L' : 'M') + (250 + r * Math.cos(t)).toFixed(1) + ',' + (250 + r * Math.sin(t)).toFixed(1);
+    const key = JSON.stringify(bands);
+    if (!glCache[key]) {
+      let m = '';
+      for (const [r0, a, lobes, n, col, op] of bands) {
+        const N = Math.max(400, lobes * 22);
+        let g = '';
+        for (let j = 0; j < n; j++) {
+          const ph = 2 * Math.PI * j / (lobes * n);
+          let d = '';
+          for (let i = 0; i < N; i++) {
+            const t = 2 * Math.PI * i / N, r = r0 + a * Math.sin(lobes * (t + ph)) + a * .18 * Math.sin(3 * lobes * (t - ph));
+            d += (i ? 'L' : 'M') + (250 + r * Math.cos(t)).toFixed(1) + ' ' + (250 + r * Math.sin(t)).toFixed(1);
+          }
+          g += '<path d="' + d + 'Z"/>';
         }
-        const p = D.createElementNS(ns, 'path');
-        p.setAttribute('d', d + 'Z');
-        p.setAttribute('stroke', col);
-        p.setAttribute('stroke-opacity', op);
-        if (o.draw) { p.setAttribute('pathLength', '1'); p.style.animationDelay = (k++ * 28) + 'ms'; }
-        frag.append(p);
+        m += '<g stroke="' + col + '" stroke-opacity="' + op + '">' + g + '</g>';
       }
+      m += '<g stroke="#F2B705" stroke-opacity=".35"><circle cx="250" cy="250" r="238"/><circle cx="250" cy="250" r="242"/></g>';
+      glCache[key] = URL.createObjectURL(new Blob(['<svg xmlns="' + ns + '" viewBox="0 0 500 500" fill="none" stroke-width=".8">' + m + '</svg>'], { type: 'image/svg+xml' }));
     }
-    [238, 242].forEach(r => { const c = D.createElementNS(ns, 'circle'); c.setAttribute('cx', 250); c.setAttribute('cy', 250); c.setAttribute('r', r); c.setAttribute('fill', 'none'); c.setAttribute('stroke', '#F2B705'); c.setAttribute('stroke-opacity', .35); frag.append(c); });
-    svg.append(frag);
+    const im = D.createElementNS(ns, 'image');
+    im.setAttribute('href', glCache[key]); im.setAttribute('width', 500); im.setAttribute('height', 500);
+    svg.replaceChildren(im);
     if (o.draw && !reduced) svg.classList.add('draw');
   }
 
