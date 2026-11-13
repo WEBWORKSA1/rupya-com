@@ -77,7 +77,7 @@ table,output,.num{font-variant-numeric:tabular-nums}
 .drawer .btn{width:100%;margin-top:18px}
 
 /* buttons */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--btn);color:var(--btnt);border:0;border-radius:999px;padding:12px 22px;font:600 .98rem/1.2 var(--body);text-decoration:none;cursor:pointer;transition:background .15s,box-shadow .15s;white-space:nowrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--btn);color:var(--btnt);border:0;border-radius:999px;padding:12px 22px;font:600 .98rem/1.2 var(--body);text-decoration:none;cursor:pointer;transition:background .15s,box-shadow .15s;white-space:nowrap;max-width:100%}
 .btn:hover{background:var(--btnh);color:var(--btnt)}
 .btn:active{transform:translateY(1px)}
 .btn.gold{background:var(--gold);color:var(--goldink)}
@@ -140,9 +140,9 @@ table,output,.num{font-variant-numeric:tabular-nums}
 .med-t{position:absolute;bottom:2%;left:50%;transform:translateX(-50%);display:flex;gap:2px;background:rgba(14,24,48,.85);border:1px solid rgba(255,255,255,.16);padding:4px;border-radius:999px}
 .med-t button{background:none;border:0;color:#C3CDE0;font:600 .82rem var(--body);padding:6px 11px;border-radius:999px;cursor:pointer}
 .med-t button[aria-pressed=true]{background:var(--gold);color:var(--goldink)}
-.gl path{fill:none;stroke-width:.75;vector-effect:non-scaling-stroke}
-.gl.draw path{stroke-dasharray:1;stroke-dashoffset:1;animation:gl 2.4s cubic-bezier(.4,.1,.2,1) forwards}
-@keyframes gl{to{stroke-dashoffset:0}}
+@property --sw{syntax:'<angle>';inherits:false;initial-value:0deg}
+.gl.draw{-webkit-mask:conic-gradient(from -90deg,#000 var(--sw),transparent 0);mask:conic-gradient(from -90deg,#000 var(--sw),transparent 0);animation:sw 2.6s cubic-bezier(.4,.1,.2,1) .15s forwards}
+@keyframes sw{to{--sw:360deg}}
 
 /* live board */
 .board{display:grid;grid-template-columns:repeat(auto-fit,minmax(128px,1fr));border-top:1px solid rgba(255,255,255,.12)}
@@ -187,6 +187,7 @@ a.card p:last-child,.card>p:last-child{margin-bottom:0}
 .kv{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:0;border:1px solid var(--rule);border-radius:var(--r2);background:var(--sheet);overflow:hidden}
 .kv div{padding:16px 18px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);margin:-1px -1px 0 0}
 .kv dt{font-size:.84rem;color:var(--mute)}
+[data-pair] .kv{grid-template-columns:repeat(2,minmax(0,1fr))}
 .kv dd{margin:2px 0 0;font:700 1.4rem/1.2 var(--disp);letter-spacing:-.01em}
 .kv dd small{display:block;font:400 .78rem var(--body);color:var(--mute);margin-top:3px}
 
@@ -279,6 +280,7 @@ input[type=range]::-moz-range-thumb{width:17px;height:17px;border-radius:50%;bac
 
 /* calculator */
 .cx{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:22px;margin:24px 0 10px;align-items:start}
+.cx.lw{grid-template-columns:minmax(0,1.33fr) minmax(0,.67fr)}
 .cx-in{background:var(--sheet);border:1px solid var(--rule);border-radius:var(--r2);padding:24px 24px 6px}
 .fd{margin-bottom:20px}
 .fd-t{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:2px}
@@ -404,7 +406,7 @@ input[type=range]::-moz-range-thumb{width:17px;height:17px;border-radius:50%;bac
   .band{grid-template-columns:1fr;padding:28px}
 }
 @media (max-width:860px){
-  .cx{grid-template-columns:1fr}.cx-out{position:static}
+  .cx,.cx.lw{grid-template-columns:1fr}.cx-out{position:static}
   .cx-sticky.on{display:flex}
   .conv-g{grid-template-columns:1fr 1fr}.conv-g .amt{grid-column:1/-1}.conv-g .swap{display:none}
   .cx-lead{flex-direction:column;align-items:flex-start}
@@ -422,5 +424,6 @@ input[type=range]::-moz-range-thumb{width:17px;height:17px;border-radius:50%;bac
   .cookie{flex-direction:column;align-items:flex-start}
   .hero h1{font-size:clamp(2.5rem,12vw,3.4rem)}
 }
-@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}.gl.draw path{stroke-dashoffset:0}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}.gl.draw{-webkit-mask:none;mask:none}}
+@media (max-width:560px){.btn{white-space:normal;text-align:center}}
 @media print{#hdr,#ftr,.topbar,.cookie,.cx-act,.cx-lead,.cx-sticky,.tabs,.chips,.pal{display:none!important}body{background:#fff}.cx{grid-template-columns:1fr}}
