@@ -1,0 +1,36 @@
+<!doctype html><html lang="en-IN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>My Rupya: Your Saved Calculations | Rupya.com</title>
+<meta name="description" content="Your saved calculations, recent tools and IFSC lookups, kept privately on this device.">
+<meta name="robots" content="noindex">
+<meta name="google-adsense-account" content="ca-pub-6620975821265271"><link rel="icon" href="favicon.svg"><link rel="stylesheet" href="assets/site.css">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6620975821265271" crossorigin="anonymous"></script>
+<script defer src="assets/site.js"></script></head><body>
+<a class="topbar" href="https://web.works/contact">Contact, if you are interested in this website/domain name/Sponsorship/Advertisement/Partnership</a>
+<header id="hdr"></header><main class="wrap">
+<p class="crumb"><a href="index.html">Home</a> › My Rupya</p>
+<h1>My Rupya</h1>
+<p class="lead">Calculations you saved and tools you used, kept only in this browser. Nothing here is sent to us.</p>
+<h2>Saved calculations</h2>
+<div id="sv"></div>
+<h2>Recently used</h2>
+<div class="chips" id="rc"></div>
+<h2>Recent IFSC lookups</h2>
+<div class="chips" id="if"></div>
+<section class="sec" style="padding-top:30px"><div class="panel"><h3 style="margin-top:0">Your data, your device</h3><p class="muted">Saved items live in this browser’s storage. They do not sync between devices and disappear if you clear your browsing data. Download a copy to keep them.</p><p style="display:flex;gap:10px;flex-wrap:wrap;margin:0"><button class="btn sm ghost" type="button" id="ex">Download my data</button><button class="btn sm ghost" type="button" id="cl">Clear everything</button></p></div></section>
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+  var R=window.Rupya;if(!R)return;
+  function esc(s){var d=document.createElement('div');d.textContent=s;return d.innerHTML}
+  function draw(){
+    var s=R.store.get('saved',[]),el=document.getElementById('sv');
+    el.innerHTML=s.length?'<div class="tbl scroll"><table><thead><tr><th scope="col">Calculator</th><th scope="col">Result</th><th scope="col">Saved</th><th scope="col"><span class="sr">Actions</span></th></tr></thead><tbody>'+s.map(function(x,i){return '<tr><td><a href="'+esc(x.u)+'">'+esc(x.t)+'</a></td><td>'+esc(x.l)+': <b>'+esc(x.v)+'</b></td><td>'+new Date(x.d).toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'})+'</td><td><button class="link" type="button" data-del="'+i+'">Remove</button></td></tr>'}).join('')+'</tbody></table></div>':'<div class="panel"><p style="margin:0">Nothing saved yet. Open any <a href="calculators/index.html">calculator</a>, set your numbers and press <b>Save</b>. Your result appears here with a link that restores every input.</p></div>';
+    var r=R.store.get('recent',[]);document.getElementById('rc').innerHTML=r.length?r.map(function(x){return '<a class="chip" href="'+esc(x.u)+'">'+esc(x.t)+'</a>'}).join(''):'<p class="muted" style="margin:0">Calculators you open will appear here.</p>';
+    var f=R.store.get('ifsc',[]);document.getElementById('if').innerHTML=f.length?f.map(function(x){return '<a class="chip" href="ifsc-code-finder.html#'+esc(x)+'">'+esc(x)+'</a>'}).join(''):'<p class="muted" style="margin:0">Codes you look up in the <a href="ifsc-code-finder.html">IFSC finder</a> will appear here.</p>';
+  }
+  document.addEventListener('click',function(e){var b=e.target.closest('[data-del]');if(!b)return;var s=R.store.get('saved',[]);s.splice(+b.dataset.del,1);R.store.set('saved',s);draw();R.toast('Removed')});
+  document.getElementById('ex').onclick=function(){var d={saved:R.store.get('saved',[]),recent:R.store.get('recent',[]),ifsc:R.store.get('ifsc',[])};var a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(d,null,2)],{type:'application/json'}));a.download='my-rupya.json';document.body.append(a);a.click();a.remove()};
+  document.getElementById('cl').onclick=function(){['saved','recent','ifsc'].forEach(function(k){R.store.set(k,[])});draw();R.toast('Cleared')};
+  draw();
+});
+</script>
+</main><footer id="ftr"></footer></body></html>
