@@ -1,5 +1,5 @@
 /* Rupya.com offline support: network first, cached copy when offline */
-const V = 'rupya-v2';
+const V = 'rupya-v3';
 const CORE = ['/', '/index.html', '/assets/site.css', '/assets/site.js', '/assets/calc.js', '/assets/fx.js', '/favicon.svg', '/calculators/index.html', '/data/rates.json'];
 self.addEventListener('install', e => { e.waitUntil(caches.open(V).then(c => c.addAll(CORE)).catch(() => {}).then(() => self.skipWaiting())); });
 self.addEventListener('activate', e => { e.waitUntil(caches.keys().then(k => Promise.all(k.filter(x => x !== V).map(x => caches.delete(x)))).then(() => self.clients.claim())); });
